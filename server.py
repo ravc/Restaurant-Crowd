@@ -10,12 +10,6 @@ def index():
     location = request.get_data()
     return render_template('index.html')
 
-@app.route("/onl")
-def onload():
-    location = request.get_data()
-    
-    return 'null'
-
 @app.route('/find', methods = ['POST','GET'])
 def worker():
     data = request.get_data()
