@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                document.getElementById("autocomplete-input").onkeyup = function(e) {
+                    if(e.keyCode == 13){
+                        var x = document.getElementById("autocomplete-input").value
+                        $.post('/find', x, function(data){
+                            $('ol').html(data);
+                        });
+                    }
+                };
+            }
+        </script>
+<!--        <script type="text/javascript">
+            window.onload = function(){
+                $.getJSON('https://freegeoip.net/json/').done(function(location){
+                    $.post('/onl', [location.latitude, location.longitude], function(data){
+                        $('ol').append(data);
+                    });
+                });
+            }
+        </script>-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+<body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+    <header>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper light-blue darken-4">
+                <a href="#" class="brand-logo right">Crowded</a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="mobile.html"><i class="material-icons">view_module</i></a></li>
+                    <li>
+                        <div class="center row">
+                          <div class="col s12 " >
+                            <div class="row" id="topbarsearch">
+                              <div class="input-field col s6 s12">
+                                <i class="material-icons prefix">search</i>
+                                <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete" name="search">
+                                </div>
+                              </div>
+                            </div>
+                        </div> 
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    </header>
+    <ol>{{init_data}}</ol>
+</body>
