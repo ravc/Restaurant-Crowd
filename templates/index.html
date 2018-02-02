@@ -17,22 +17,6 @@
                 };
             }
         </script>
-        <script>
-            var slider = document.getElementById('test-slider');
-  noUiSlider.create(slider, {
-   start: [20, 80],
-   connect: true,
-   step: 1,
-   orientation: 'horizontal', // 'horizontal' or 'vertical'
-   range: {
-     'min': 0,
-     'max': 100
-   },
-   format: wNumb({
-     decimals: 0
-   })
-  });
-        </script>
         <script>$('.button-collapse').sideNav('show');</script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <style>
@@ -92,7 +76,11 @@
                 <label for="4">$$$</label></p>
         </form>
     </li>
-    <li>Distance</li>
+    <li>Distance - Meters
+        <form action="#"><p class="range-field">
+            <input type="range" id="distance" min="200" max="1000"/></p>
+        </form>
+    </li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
           
