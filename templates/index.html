@@ -2,6 +2,8 @@
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/materialize.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript">
             window.onload = function() {
@@ -15,20 +17,36 @@
                 };
             }
         </script>
+        <script>$('.button-collapse').sideNav('show');</script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style>
+         main, footer {
+            padding-left: 300px;
+        }
+
+        @media only screen and (max-width : 992px) {
+            header, main, footer {
+                padding-left: 0;
+            }
+        }
+        
+        .side-nav {
+            margin-top: 65px;
+        }
+        
+        ol{
+            padding-left: 350px;
+        }
+    </style>
     </head>
 <body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="/static/js/materialize.min.js"></script>
     <header>
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper light-blue darken-4">
                 <a href="#" class="brand-logo right">Crowded</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="mobile.html"><i class="material-icons">view_module</i></a></li>
-                    <li>
-                        <div class="center row">
+                    <li><div class="center row">
                           <div class="col s12 " >
                             <div class="row" id="topbarsearch">
                               <div class="input-field col s6 s12">
@@ -44,5 +62,12 @@
         </nav>
     </div>
     </header>
-    <ol>{{init_data}}</ol>
+    
+    <ul id="slide-out" class="side-nav fixed">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+          
+    <ol></ol>
 </body>
