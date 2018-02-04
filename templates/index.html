@@ -6,16 +6,31 @@
         <script type="text/javascript" src="/static/js/materialize.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript">
+            $.ajax({ async: false });
             window.onload = function() {
                 document.getElementById("autocomplete-input").onkeyup = function(e) {
                     if(e.keyCode == 13){
                         var x = document.getElementById("autocomplete-input").value
                         $.post('/find', x, function(data){
-                            $('ol').html(data);
+                            if(data == ''){
+                                alert("Nothing found");
+                            }else{$('ol').html(data);}
                         });
                     }
                 };
             }
+        </script>
+        <script type="text/javascript">
+            $.ajax({ async: false });
+            $(document).ready(function() {
+                $.getJSON('https://freegeoip.net/json/').done(function(location){
+                    $.post('/init', location, function(data){
+                        if(data == ''){
+                            alert("Nothing found");
+                        }else{$('ol').html(data);}
+                    });
+                });
+            });
         </script>
         <script>$('.button-collapse').sideNav('show');</script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -62,7 +77,6 @@
         </nav>
     </div>
     </header>
-    
     <ul id="slide-out" class="side-nav fixed ">
     <li>Max Price 
         <form action="#">
