@@ -8,8 +8,8 @@ def create_card(name, addr, site, rate, color):
     return '<div class="row"><div class="col s12 m7"><div class="card ' + color+ '"><div class="card-image"><span class="card-title"></span></div><div class="card-content"><p>' + name + ' - ' + addr + '</p></div><div class="card-action"><a href="' + site +'">' + 'Site - ' + rate+'</a></div></div></div></div>'
 
 
-def look_for(location, query="food", distance=500):
-    places = gmaps.places_nearby(location,radius=distance,keyword=query)['results']
+def look_for(location, query="food", distance=500, price=4):
+    places = gmaps.places_nearby(location,radius=distance,keyword=query,max_price=price)['results']
     total_places = ''
     colors = ['red accent-4', 'yellow accent-2', 'light-green accent-3']
     for place in places:

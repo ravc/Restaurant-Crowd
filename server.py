@@ -14,9 +14,9 @@ def index():
 
 @app.route('/find', methods = ['POST','GET'])
 def find():
-    data = request.get_data()
+    look = request.get_data()
     
-    return look_for(latlon, data)
+    return look_for(latlon, query=look)
 
 @app.route('/init', methods = ['POST', 'GET'])
 def init():
@@ -29,8 +29,8 @@ def init():
     
     global latlon
     latlon = [latitude,longitude]
-    
-    return look_for([latitude,longitude])
+
+    return look_for(latlon)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
