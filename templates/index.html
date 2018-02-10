@@ -1,102 +1,61 @@
+<!doctype html>
 <html>
-    <head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="/static/js/materialize.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript">
-            $.ajax({ async: false });
-            window.onload = function() {
-                document.getElementById("autocomplete-input").onkeyup = function(e) {
-                    if(e.keyCode == 13){
-                        var x = document.getElementById("autocomplete-input").value
-                        $.post('/find', x, function(data){
-                            if(data == ''){
-                                alert("Nothing found");
-                            }else{$('ol').html(data);}
-                        });
-                    }
-                };
-            }
-        </script>
-        <script type="text/javascript">
-            $.ajax({ async: false });
-            $(document).ready(function() {
-                $.getJSON('https://freegeoip.net/json/').done(function(location){
-                    $.post('/init', location, function(data){
-                        if(data == ''){
-                            alert("Nothing found");
-                        }else{$('ol').html(data);}
-                    });
-                });
-            });
-        </script>
-        <script>$('.button-collapse').sideNav('show');</script>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <style>
-         main, footer {
-            padding-left: 300px;
-        }
-
-        @media only screen and (max-width : 992px) {
-            header, main, footer {
-                padding-left: 0;
-            }
-        }
-        
-        .side-nav {
-            margin-top: 64px;
-        }
-        
-        ol{
-            padding-left: 350px;
-        }
-    </style>
-    </head>
-<body>
+  <head>
+    <meta charset=utf-8>
+    <meta name=viewport content=width=device-width,initial-scale=1>
+    <title>Restaurant Crowd</title>
+    <script src=https://code.jquery.com/jquery-3.2.1.min.js integrity=sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4= crossorigin=anonymous></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js></script>
+    <script src=main.js></script>
+    <link href=https://fonts.googleapis.com/css?family=Roboto rel=stylesheet>
+    <link href=https://fonts.googleapis.com/icon?family=Material+Icons rel=stylesheet>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css>
+    <link href=main.css rel=stylesheet>
+  </head>
+  <body>
     <header>
     <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper light-blue darken-4">
-                <a href="#" class="brand-logo right">Crowded</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><div class="center row">
-                          <div class="col s12 " >
-                            <div class="row" id="topbarsearch">
-                              <div class="input-field col s6 s12">
-                                <i class="material-icons prefix">search</i>
-                                <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete" name="search">
-                                </div>
-                              </div>
-                            </div>
-                        </div> 
-                    </li>
-                </ul>
-            </div>
-        </nav>
+      <nav>
+        <div class="nav-wrapper light-blue darken-4">
+          <a href="#" class="brand-logo right">Crowded</a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><div class="center row">
+                <div class="col s12 " >
+                <div class="row" id="topbarsearch">
+                  <div class="input-field col s6 s12">
+                  <i class="material-icons prefix">search</i>
+                  <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete" name="search">
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
     </header>
     <ul id="slide-out" class="side-nav fixed ">
-    <li>Max Price 
-        <form action="#" method="POST">
-            <p><input name="group1" type="radio" value=1 id="1"/>
-                <label for="1">$</label></p>
-            <p><input name="group1" type="radio" value=2 id="2"/>
-                <label for="2">$$</label></p>
-            <p><input name="group1" type="radio" value=3 id="3"/>
-                <label for="3">$$$</label></p>
-            <p><input name="group1" type="radio" value=4 id="4" checked/>
-                <label for="4">$$$$</label></p>
-        </form>
+    <li>Max Price
+      <form action="#" method="POST">
+        <p><input name="group1" type="radio" value=1 id="1"/>
+          <label for="1">$</label></p>
+        <p><input name="group1" type="radio" value=2 id="2"/>
+          <label for="2">$$</label></p>
+        <p><input name="group1" type="radio" value=3 id="3"/>
+          <label for="3">$$$</label></p>
+        <p><input name="group1" type="radio" value=4 id="4" checked/>
+          <label for="4">$$$$</label></p>
+      </form>
     </li>
     <li>Distance - Meters
-        <form action="#"><p class="range-field">
-            <input type="range" id="distance" min="200" max="1000"/></p>
-        </form>
+      <form action="#"><p class="range-field">
+        <input type="range" id="distance" min="200" max="1000"/></p>
+      </form>
     </li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-          
+
     <ol></ol>
-</body>
+  </body>
+</html>
