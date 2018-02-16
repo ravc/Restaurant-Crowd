@@ -3,9 +3,9 @@
 $(() => {
   $('.button-collapse').sideNav('show');
 
-  $("autocomplete-input").on('keyup', e => {
+  $("#autocomplete-input").on('keyup', e => {
     if(e.keyCode == 13) {
-      $.post('/find', $("autocomplete-input").val(), function(data) {
+      $.post('/find', $("#autocomplete-input").val(), function(data) {
         if(data.length) $('ol').html(data);
         else alert("Nothing found");
       });
