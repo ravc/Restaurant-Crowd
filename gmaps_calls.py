@@ -5,13 +5,13 @@ import config
 gmaps = googlemaps.Client(key=config.api_key)
 
 def create_card(name, addr, site, rate, color):
-    return '<div class="row"><div class="col s12 m7"><div class="card ' + color+ '"><div class="card-image"><span class="card-title"></span></div><div class="card-content"><p>' + name + ' - ' + addr + '</p></div><div class="card-action"><a href="' + site +'">' + 'Site - ' + rate+'</a></div></div></div></div>'
+    return '<div class="row"><div class="col s12 m7"><div class="card ' + color + '"><div class="card-image"><span class="card-title"></span></div><div class="card-content"><p>' + name + ' - ' + addr + '</p></div><div class="card-action"><a href="' + site +'">' + 'Site - ' + rate+'</a></div></div></div></div>'
 
 
-def look_for(location, query="food", distance=500, price=4):
-    places = gmaps.places_nearby(location,radius=distance,keyword=query,max_price=price)['results']
+def look_for(location, query='food', distance=500, price=4):
+    places = gmaps.places_nearby(location, radius=distance, keyword=query, max_price=price)['results']
     total_places = ''
-    colors = ['red', 'yellow accent-2', 'light-green accent-3','blue darken-1']
+    colors = ['red', 'yellow accent-2', 'light-green accent-3', 'blue darken-1']
     for place in places:
         pop = ""
         website = ""
@@ -25,7 +25,7 @@ def look_for(location, query="food", distance=500, price=4):
                 color = colors[2]
             else:
                 color = colors[1]
-                
+
             website = gmaps.place(place['place_id'])['result']['website']
             total_places += create_card(place['name'], place['vicinity'], website, rate, color)
         except:
@@ -34,5 +34,5 @@ def look_for(location, query="food", distance=500, price=4):
             except:
                 pass
             total_places += create_card(place['name'], place['vicinity'], website, rate, colors[3])
-        
+
     return total_places

@@ -1,42 +1,34 @@
 from flask import Flask, render_template, request, redirect, Response, jsonify
-import random, json
-import sys
+import json, random, sys
 from gmaps_calls import *
 
-latlon = []
+location = []
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def index():
     location = request.get_data()
     return render_template('index.html')
 
-@app.route('/find', methods = ['POST','GET'])
-def find():
-    look = str(request.get_data())
-
-    x = look.split('&')
-
-    query = x[0][4:]
-    price = int(x[1][2])
-    distance = int(x[2][2:-1])
-    
-    return look_for(latlon, query=query, price=price, distance=distance)
-
 @app.route('/init', methods = ['POST', 'GET'])
 def init():
-    data = str(request.get_data())
-    
-    x = data.split('&')
-    
-    latitude = float(x[-3].split('=')[1])
-    longitude = float(x[-2].split('=')[1])
-    
-    global latlon
-    latlon = [latitude,longitude]
+    global location
+    location = request.get_json()
 
-    return look_for(latlon)
+    return look_for(location)
+
+@app.route('/find', methods = ['POST', 'GET'])
+def find():
+    data = request.get_json()
+
+    print(data)
+
+    query = data[0]
+    price = data[1]
+    distance = data[2]
+
+    return look_for(location, query=query, price=price, distance=distance)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

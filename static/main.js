@@ -5,17 +5,36 @@ $(() => {
 
   $("#autocomplete-input").on('keyup', e => {
     if(e.keyCode == 13) {
-      $.post('/find', {q: $("#autocomplete-input").val(), p: $("input[type='radio'][name='group1']:checked").val(), d: $("#distance").val()}, function(data) {
-        if(data.length) $('ol').html(data);
-        else alert("Nothing found");
+      $.ajax({
+        url: '/find',
+        type: 'POST',
+        data: JSON.stringify([$("#autocomplete-input").val(), $("input[type='radio'][name='group1']:checked").val(), $("#distance").val()]),
+        contentType: 'application/json; charset=utf-8',
+        success: data => {
+          if(data.length) $('ol').html(data);
+          else alert("Nothing found");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(errorThrown);
+        }
       });
     }
   });
 
-  $.getJSON('https://freegeoip.net/json/').done(location => {
-    $.post('/init', location, data => {
-      if(data.length) $('ol').html(data);
-      else alert("Nothing found");
+  navigator.geolocation.getCurrentPosition(location => {
+    var coords = [location['coords']['latitude'], location['coords']['longitude']];
+    $.ajax({
+      url: '/init',
+      type: 'POST',
+      data: JSON.stringify(coords),
+      contentType: 'application/json; charset=utf-8',
+      success: data => {
+        if(data.length) $('ol').html(data);
+        else alert("Nothing found");
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(errorThrown);
+      }
     });
   });
 });
