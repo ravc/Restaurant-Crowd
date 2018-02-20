@@ -1,8 +1,7 @@
 import googlemaps
 import populartimes
-import config
 
-gmaps = googlemaps.Client(key=config.api_key)
+gmaps =  googlemaps.Client(key='AIzaSyDC4QzbGIoiBIr83c5Vp8bkyN8t60K_XGA'y)
 
 def create_card(name, addr, site, rate, color):
     return '<div class="row"><div class="col s12 m7"><div class="card ' + color+ '"><div class="card-image"><span class="card-title"></span></div><div class="card-content"><p>' + name + ' - ' + addr + '</p></div><div class="card-action"><a href="' + site +'">' + 'Site - ' + rate+'</a></div></div></div></div>'
