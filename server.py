@@ -17,8 +17,6 @@ def find():
     look = str(request.get_data())
     
     x = look.split('&')
-    
-    print(x[1])
 
     query = x[0][4:]
     price = int(x[1][2])
