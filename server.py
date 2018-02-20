@@ -15,13 +15,14 @@ def index():
 @app.route('/find', methods = ['POST','GET'])
 def find():
     look = str(request.get_data())
-    
+
     x = look.split('&')
 
     query = x[0][4:]
     price = int(x[1][2])
+    distance = int(x[2][2:])
     
-    return look_for(latlon, query=query, price=price)
+    return look_for(latlon, query=query, price=price, distance=distance)
 
 @app.route('/init', methods = ['POST', 'GET'])
 def init():
