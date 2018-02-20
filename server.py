@@ -20,7 +20,7 @@ def find():
 
     query = x[0][4:]
     price = int(x[1][2])
-    distance = int(x[2][2:])
+    distance = int(x[2][2:-1])
     
     return look_for(latlon, query=query, price=price, distance=distance)
 
