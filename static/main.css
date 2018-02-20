@@ -1,17 +1,79 @@
-main, footer {
-  padding-left: 300px;
+#searchBar {
+  color: #000;
+  margin: 10px 5px;
 }
 
-@media only screen and (max-width : 992px) {
-  header, main, footer {
-    padding-left: 0;
-  }
+#searchBar i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
-.side-nav {
-  margin-top: 64px;
+#searchBar input {
+  border: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: block;
+  font-size: 16px;
+  font-weight: 300;
+  height: 45px;
+  margin: 0;
+  outline: none;
+  padding: 0 45px 0 15px;
+  width: 100%;
 }
 
-ol {
-  padding-left: 350px;
+#price {
+  text-align: center;
+  width: 100%;
+}
+
+#price p {
+  display: inline-block;
+  float: left;
+  margin: 20px 0;
+  width: 25%;
+}
+
+#price label {
+  color: #fff;
+  display: block;
+  line-height: 25px;
+  padding-left: 20px;
+}
+
+#price label::before {
+  border-color: #fff;
+  margin: 5px 0;
+}
+
+#price label::after {
+  background-color: #fff;
+  border-color: #fff;
+  margin: 5px 0;
+}
+
+#distanceContainer {
+  margin-top: 30px;
+}
+
+#distance {
+  margin: 5px 1px;
+}
+
+#distance, #distance::-moz-focus-outer {
+  border: none;
+  outline: none;
+}
+
+#distance ~ .thumb {
+  background-color: #fff;
+}
+
+#distance ~ .thumb * {
+  color: #000;
+}
+
+#distance::-moz-range-thumb {
+  background: #fff;
 }

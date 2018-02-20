@@ -8,7 +8,7 @@ $(() => {
       $.ajax({
         url: '/find',
         type: 'POST',
-        data: JSON.stringify([$("#autocomplete-input").val(), $("input[type='radio'][name='group1']:checked").val(), $("#distance").val()]),
+        data: JSON.stringify([$("#autocomplete-input").val(), $("input[type='radio'][name='price']:checked").val(), $("#distance").val()]),
         contentType: 'application/json; charset=utf-8',
         success: data => {
           if(data.length) $('ol').html(data);
