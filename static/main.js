@@ -13,9 +13,6 @@ $(() => {
         success: data => {
           if(data.length) $('ol').html(data);
           else alert("Nothing found");
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          console.log(errorThrown);
         }
       });
     }
@@ -27,14 +24,7 @@ $(() => {
       url: '/init',
       type: 'POST',
       data: JSON.stringify(coords),
-      contentType: 'application/json; charset=utf-8',
-      success: data => {
-        if(data.length) $('ol').html(data);
-        else alert("Nothing found");
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-      }
+      contentType: 'application/json; charset=utf-8'
     });
   });
 });

@@ -1,3 +1,8 @@
+h4 {
+  margin: 0;
+  padding: 10px 0;
+}
+
 #searchBar {
   color: #000;
   margin: 10px 5px;
@@ -51,10 +56,6 @@
   background-color: #fff;
   border-color: #fff;
   margin: 5px 0;
-}
-
-#distanceContainer {
-  margin-top: 30px;
 }
 
 #distance {
