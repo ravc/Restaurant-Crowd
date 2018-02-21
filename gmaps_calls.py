@@ -9,6 +9,7 @@ def create_card(name, addr, site, rate, color):
 
 
 def look_for(location, query='food', distance=500, price=4):
+    print('Requesting places.')
     places = gmaps.places_nearby(location, radius=distance, keyword=query, max_price=price)['results']
     total_places = ''
     colors = ['red', 'yellow accent-2', 'light-green accent-3', 'blue darken-1']
@@ -17,6 +18,7 @@ def look_for(location, query='food', distance=500, price=4):
         website = ""
         rate = str(place['rating'])
         try:
+            print('Requesting popular times.')
             more_info = populartimes.get_id(config.api_key, place['place_id'])
             pop = more_info['current_popularity']
             if(pop >= 75):
@@ -25,11 +27,12 @@ def look_for(location, query='food', distance=500, price=4):
                 color = colors[2]
             else:
                 color = colors[1]
-
+            print('Requesting website.')
             website = gmaps.place(place['place_id'])['result']['website']
             total_places += create_card(place['name'], place['vicinity'], website, rate, color)
         except:
             try:
+                print('Requesting website.')
                 website = gmaps.place(place['place_id'])['result']['website']
             except:
                 pass
