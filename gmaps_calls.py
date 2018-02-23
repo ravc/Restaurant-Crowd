@@ -1,6 +1,5 @@
 import googlemaps
 import populartimes
-import queue as queue
 from multiprocessing.dummy import Pool as ThreadPool
 import config
 
