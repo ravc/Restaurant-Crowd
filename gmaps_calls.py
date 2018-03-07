@@ -40,7 +40,9 @@ def look_for(location, query='food', distance=500, price=4):
     places = gmaps.places_nearby(location, radius=distance, keyword=query, max_price=price)['results']
     global total_places
     total_places = ''
-    
+    if (!len(places)){
+        return total_places
+    }
     pool = ThreadPool(len(places))
     pool.map(thread_search, places)
 
