@@ -25,9 +25,17 @@ def thread_search(place):
         else:
             color = colors[1]
         print('Requesting website.')
-        website = gmaps.place(place['place_id'])['result']['website']
+        try:
+            website = gmaps.place(place['place_id'])['result']['website']
+        except:
+            pass
         total_places += create_card(place['name'], place['vicinity'], website, rate, color)
     except:
+        try:
+            print('Requesting website.')
+            website = gmaps.place(place['place_id'])['result']['website']
+        except:
+            pass
         total_places += create_card(place['name'], place['vicinity'], website, rate, colors[3])
 
 def look_for(location, query='food', distance=500, price=4):
