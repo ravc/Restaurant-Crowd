@@ -27,7 +27,6 @@ def thread_search(place):
         print('Requesting website.')
         website = gmaps.place(place['place_id'])['result']['website']
         total_places += create_card(place['name'], place['vicinity'], website, rate, color)
-        yield total_places
     except:
         try:
             print('Requesting website.')
@@ -35,7 +34,6 @@ def thread_search(place):
         except:
             pass
         total_places += create_card(place['name'], place['vicinity'], website, rate, colors[3])
-        yield total_places
 
 def look_for(location, query='food', distance=500, price=4):
     print('Requesting places.')
@@ -46,11 +44,10 @@ def look_for(location, query='food', distance=500, price=4):
         return total_places
     
     pool = ThreadPool(len(places))
-    t = pool.map(thread_search, places)
+    pool.map(thread_search, places)
     
-    total_places = [z for x in t if x for z in x]
     
     pool.close()
     pool.join()
     
-    return total_places[0]
+    return total_places
